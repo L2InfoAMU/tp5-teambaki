@@ -21,12 +21,14 @@ public class Display implements Initializable {
     private Image image;
     private ImageFactory imageFactory;
 
-    @Override
+
+                                                         @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         // TODO : rajouter la création d'une fabrique d'image pour initialiser imageFactory
-
+        imageFactory = new RasterUniformImageFactory(200, 200, Color.RED, RasterImageType.BRUTE);
         this.image = imageFactory.makeImage();
+
 
         render();
     }
