@@ -2,28 +2,31 @@ package image;
 
 import javafx.scene.paint.Color;
 
-public class BruteRasterImage implements Image  {
-    private Color[][] colors;
+import java.util.List;
+
+public class PaletteRasterImage implements Image {
+
+    private List<Color> palette;
+    private int[][] indexesOfColors;
     private int height;
     private int width;
 
-    /* Constructeurs */
-    public BruteRasterImage(Color color,int width, int height)
+    public PaletteRasterImage(Color color, int width,int height)
     {
         this.width = width;
         this.height = height;
-
-        colors = new Color[width][height];
+        //colors = new Color[width][height];
         for(int i=0;i<height;i++)
         {
             for(int j=0;j<width;j++)
             {
-                 colors[i][j]= color;
+                palette.indexOf(indexesOfColors[j][i]);
             }
         }
+
     }
 
-    public BruteRasterImage(Color[][] colors)
+    public PaletteRasterImage(Color[][] pixels)
     {
         this.colors=colors;
         this.width=colors.length;
@@ -31,8 +34,11 @@ public class BruteRasterImage implements Image  {
 
     }
 
+    //Méthode
+
     public void createRepresentation(){
         colors = new Color[height][width];
+
     }
 
 
@@ -61,7 +67,7 @@ public class BruteRasterImage implements Image  {
     }
 
 
-   public int getWidth() {
+    public int getWidth() {
         return width;
     }
 
@@ -71,12 +77,11 @@ public class BruteRasterImage implements Image  {
     }
 
     protected void setWidth(int width){
-     this.width=width;
+        this.width=width;
     }
 
 
     protected void setHeight(int height){
-    this.height=height;
+        this.height=height;
     }
-
 }
