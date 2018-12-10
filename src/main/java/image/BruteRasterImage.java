@@ -1,5 +1,7 @@
 package image;
+
 import javafx.scene.paint.Color;
+import util.Matrices;
 
 public class BruteRasterImage extends RasterImage implements Image  {
     private Color[][] colors;
@@ -7,10 +9,10 @@ public class BruteRasterImage extends RasterImage implements Image  {
     public BruteRasterImage(Color color,int width, int height)
     {
         super(width,height);
-        colors = new Color[width][height];
-        for(int i=0;i<width;i++)
+        colors = new Color[this.width][this.height];
+        for(int i=0;i<this.width;i++)
         {
-            for(int j=0;j<height;j++)
+            for(int j=0;j<this.height;j++)
             {
                 colors[i][j]= color;
             }
@@ -18,7 +20,11 @@ public class BruteRasterImage extends RasterImage implements Image  {
     }
     public BruteRasterImage(Color[][] colors)
     {
-        super(colors.length,colors[0].length);
+
+        super(Matrices.getRowCount(colors),Matrices.getColumnCount(colors));
+        Matrices.requiresNonNull(colors);
+        Matrices.requiresNonZeroDimensions(colors);
+        Matrices.requiresRectangularMatrix(colors);
         this.colors=colors;
     }
     public void createRepresentation(){

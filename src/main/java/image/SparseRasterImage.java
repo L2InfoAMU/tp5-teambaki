@@ -1,5 +1,6 @@
 package image;
 import javafx.scene.paint.Color;
+import util.Matrices;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,7 @@ public class SparseRasterImage extends RasterImage implements Image{
               pixels.put(new Point(x,y), color);
     }
     public SparseRasterImage(Color[][] pixels){
-        super(pixels.length,pixels[0].length);
+        super(Matrices.getRowCount(pixels),Matrices.getColumnCount(pixels));
         for(int x=0;x<this.width;x++)
             for(int y=0;y<this.height;y++)
                 this.pixels.put(new Point(x,y), pixels[x][y]);
